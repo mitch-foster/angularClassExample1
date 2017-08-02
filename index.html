@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MyFirstAngular</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body ng-app="myApp">
+    <div ng-controller="pancakeCtrl">
+        <!-- {{ name }} -->
+        <!-- <input ng-model="name"> -->
+        <div>
+            <div>
+                <h4>New Pancake</h4>
+                Background 
+                    <input ng-model="newPancake.background">
+                <br>
+                Width
+                    <input ng-model="newPancake.width">
+                <br>
+                Height
+                    <input ng-model="newPancake.height">
+                <br>
+                <button ng-click="addPancake()"> Add Pancake </button>
+                <br>
+                {{newPancake}} <!--One way data bind -->
+            </div>
+            <button ng-hide="showFilter" ng-click="showFilter = true"> Show Filters </button>
+            <button ng-show="showFilter"ng-click="showFilter = false"> Hide Filters </button>
+            <div ng-if="showFilter">
+                <h5>The difference between a show and if is an if removes the html completely</h5>
+            </div>
+            <div ng-show="showFilter">
+                colorFilter
+                <input ng-model="filterObj.background">
+            </div>
+        </div>
+        <div class='pancake' ng-repeat="pancake in pancakes | filter : filterObj" ng-style="pancake">
+            {{pancake.background}}
+        </div>
+    </div> 
+        
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
+    <script src='app/app.js'></script>
+</body>
+</html>
